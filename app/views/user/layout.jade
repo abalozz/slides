@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title
+      block title
+        | Slides - #{user.username}
+    link(href="/bootstrap/css/bootstrap.css" rel="stylesheet")
+  body
+    nav.navbar.navbar-default: .container: ul.nav.navbar-nav
+      if (auth)
+        li: a(href="/@#{user.username}") Inicio
+        li: a(href="/profile") Editar perfil
+        li: a(href="/logout") Cerrar sesión
+      else
+        li: a(href="/") Inicio
+    
+    .container
+      block content

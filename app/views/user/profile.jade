@@ -1,0 +1,33 @@
+extends layout
+
+block title
+  | Slides - Perfil de #{user.username}
+
+block content
+  h1 Perfil de #{user.username}
+  if (auth)
+    form(action="/new" method="post" class="form")
+      input(type="hidden" name="_csrf" value=csrfToken)
+      .form-group: .input-group
+        input(name="name" id="name" class="form-control" placeholder="Introduce el nombre de la nueva presentación")
+        .input-group-btn: button(type="submit" class="btn btn-primary") Crear
+
+  section
+    h2 Lista de presentaciones
+    if (user.keynotes.length > 0)
+      each keynote in user.keynotes
+        article
+          .col-sm-9
+            h3: a(href="/@#{user.username}/#{keynote.slug}" target="_blank")=keynote.name
+          .col-sm-3
+            if (auth)
+              form(action="/keynote/#{keynote._id}/remove" method="post")
+                input(type="hidden" name="_csrf" value=csrfToken)
+                .btn-group
+                  a(href="/@#{user.username}/#{keynote.slug}" class="btn btn-default" target="_blank") Ver
+                  a(href="/@#{user.username}/#{keynote.slug}/live" class="btn btn-default" target="_blank") Live
+                  a(href="/@#{user.username}/#{keynote.slug}/edit" class="btn btn-default" target="_blank") Editar
+                  button(type="submit" class="btn btn-danger") Eliminar
+    else
+      article
+        p No hay keynotes

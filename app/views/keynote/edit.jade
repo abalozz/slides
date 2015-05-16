@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title=keynote.name
+    link(href="/css/edit-keynote.css" rel="stylesheet")
+  body
+    .keynote-data
+      form(action="/keynote/#{keynote._id}/update" method="post")
+        input(type="hidden" name="_csrf" value=csrfToken)
+        label Nombre
+          input(type="text" name="name" value=keynote.name)
+        label Slug
+          input(type="text" name="slug" value=keynote.slug)
+        button(type="submit") Editar datos de la presentación
+      form(action="/slide/new" method="post")
+        input(type="hidden" name="_csrf" value=csrfToken)
+        input(type="hidden" name="keynoteId" value=keynote._id)
+        button(type="submit") Añadir Slide
+      span#slide-number.slideNumber 1
+
+    button#prev.prev-slide= '<'
+    button#next.next-slide= '>'
+
+    div.slides-container: each slide, index in keynote.slides
+      mixin slide
+        form(action="/slide/#{slide._id}/update" method="post")
+          input(type="hidden" name="_csrf" value=csrfToken)
+          input(type="hidden" name="keynoteSlug" value=keynote.slug)
+          textarea(name="content" class="slide-content")=slide.content
+          button(type="submit" class="slide-saveButton") Guardar Slide
+        form(action="/slide/#{slide._id}/remove" method="post")
+          input(type="hidden" name="_csrf" value=csrfToken)
+          input(type="hidden" name="keynoteSlug" value=keynote.slug)
+          button(type="submit" class="slide-deleteButton") Borrar Slide
+      if (index === 0)
+        div.slide.visible
+          +slide
+      else
+        div.slide
+          +slide
+
+
+
+    script(src="/js/edit-keynote.js")

@@ -1,0 +1,13 @@
+extends layout
+
+block title
+  | Index Slides
+
+block content
+  .container: .jumbotron
+    h1 Slides
+    p Sistema de presentaciones que pueden ser controladas remotamente desde otro dispositivo.
+    if (auth)
+      a(href="/@#{username}" class="btn btn-primary") Acceder como #{username}
+    else
+      a(href="/auth/twitter" class="btn btn-primary") Iniciar sesión con Twitter

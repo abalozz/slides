@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title=keynote.name
+    link(href="/css/controls.css" rel="stylesheet")
+  body
+    input(type="hidden" value=keynote._id id="keynoteId")
+    input(type="hidden" value=isSpeaker id="isSpeaker")
+    input(type="hidden" value=totalSlides id="totalSlides")
+
+    button(id="prev" class="btn-prev") Anterior
+    button(id="next" class="btn-next") Siguiente
+    .visibleSlide
+      | Mostrando slide:
+      span#visibleSlide 1
+
+    script(src="/socket.io/socket.io.js")
+    script(src="/js/live-controls.js")

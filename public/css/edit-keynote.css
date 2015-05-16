@@ -1,0 +1,86 @@
+html {
+  box-sizing: border-box;
+}
+
+*, ::before, ::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+.keynote-data {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  border-bottom: 1px solid #777;
+  background-color: #FFF;
+  height: 2rem;
+}
+
+.keynote-data form {
+  display: inline-block;
+}
+
+.slideNumber {
+  float: right;
+  padding: .5em;
+}
+
+.prev-slide, .next-slide {
+  position: absolute;
+  height: calc(100vh - 2rem);
+  bottom: 0;
+  width: 3rem;
+  border: none;
+  font-size: 2em;
+}
+
+.prev-slide {
+  left: 0;
+}
+
+.next-slide {
+  right: 0;
+}
+
+.slides-container {
+  position: absolute;
+  bottom: 0;
+  left: 3rem;
+  right: 3rem;
+  top: 2rem;
+}
+
+.slide {
+  position: relative;
+}
+
+.slide:not(.visible) {
+  display: none;
+}
+
+.slide, .slide form, .slide-content {
+  width: 100%;
+  height: 100%;
+}
+
+.slide-content {
+  border: none;
+  padding: 10vh .5em;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.slide-saveButton, .slide-deleteButton {
+  position: absolute;
+  bottom: 0;
+  width: 12em;
+}
+.slide-saveButton {
+  right: 13em;
+}
+.slide-deleteButton {
+  right: 0;
+}

@@ -1,0 +1,13 @@
+extends layout
+
+block title
+  | Slides - Editar perfil
+
+block content
+  h1 Editar perfil de #{user.username}
+  form(action="/profile" method="post" class="form")
+    input(type="hidden" name="_csrf" value=csrfToken)
+    .form-group
+      label(for="username") Nombre de usuario
+      input(name="username" id="username" class="form-control" value=user.username)
+    button(type="submit" class="btn btn-primary") Guardar

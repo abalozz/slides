@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title=keynote.name
+    link(href="/css/keynote.css" rel="stylesheet")
+  body
+    each slide, index in keynote.slides
+      mixin slide
+        div.slide-content!=slide.markdownContent
+        span.slide-number=(index + 1)
+      if (index === 0)
+        div.slide.visible
+          +slide
+      else
+        div.slide
+          +slide
+
+    script(src="/js/keynote.js")

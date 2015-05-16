@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn-prev,
+.btn-next {
+  width: 50%;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: inline-block;
+}
+
+.btn-prev {
+  background-color: #01ff70;
+}
+
+.btn-next {
+  background-color: #ffdc00;
+}
+
+.visibleSlide {
+  text-align: center;
+  font-size: 2em;
+  width: 100%;
+}
